@@ -6,7 +6,7 @@ services:
     buildCommand: |
       cd backend && pip install -r requirements.txt
     startCommand: |
-      cd backend && gunicorn --bind 0.0.0.0:$PORT app:app
+      cd backend && uvicorn app:app --host 0.0.0.0 --port $PORT
     envVars:
       - key: FLASK_ENV
         value: production
@@ -18,9 +18,9 @@ services:
     env: node
     plan: free
     buildCommand: |
-      cd frontend && npm install && npm run build
+      npm install && npm run build
     startCommand: |
-      cd frontend && npm run preview -- --port $PORT
+      npm run preview -- --port $PORT
     envVars:
       - key: VITE_API_URL
         value: https://demo-dws-git-main.onrender.com
