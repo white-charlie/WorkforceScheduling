@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    # Add environment variables if your backend needs them
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80" # Maps container port 80 to your Mac's port 3000
+    depends_on:
+      - backend
